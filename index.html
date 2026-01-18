@@ -26,7 +26,7 @@
     fetch("config.json?ts=" + Date.now(), { cache: "no-store" })
       .then(r => r.json())
       .then(cfg => {
-        document.getElementById("meme").src = cfg.image;
+        document.getElementById("meme").src = cfg.image + "?v=" + Date.now();
       })
       .catch(() => {
         document.body.innerHTML = "<p style='color:white'>Meme nicht verfügbar</p>";
