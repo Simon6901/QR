@@ -1,1 +1,36 @@
-Hallo
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meme</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <img id="meme" alt="Loading meme…" />
+
+  <script>
+    fetch("config.json?ts=" + Date.now(), { cache: "no-store" })
+      .then(r => r.json())
+      .then(cfg => {
+        document.getElementById("meme").src = cfg.image;
+      })
+      .catch(() => {
+        document.body.innerHTML = "<p style='color:white'>Meme nicht verfügbar</p>";
+      });
+  </script>
+</body>
+</html>
